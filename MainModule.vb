@@ -504,8 +504,9 @@ Module MainModule
                     sSql &= "ISNULL(mas_Articoli.p_Sconto, 0) AS PercSconto," & vbNewLine
                     sSql &= "CONVERT(varchar, mas_Articoli.p_DataInizioSconto, 111) AS DataInizioSconto," & vbNewLine
                     sSql &= "CONVERT(varchar, mas_Articoli.p_DataFineSconto, 111) AS DataFineSconto," & vbNewLine
-                    sSql &= "mas_Articoli.Prezzo_Dettaglio," & vbNewLine
-                    sSql &= "CASE WHEN ISNULL(mas_Articoli.p_ClasseWeb, '')  = '' THEN mas_TabClas.P_ClasseECWID ELSE mas_Articoli.p_ClasseWeb END AS ClasseWeb," & vbNewLine
+               sSql &= "mas_Articoli.Prezzo_Dettaglio," & vbNewLine
+               sSql &= "mas_Articoli.Costo_ultimo," & vbNewLine
+               sSql &= "CASE WHEN ISNULL(mas_Articoli.p_ClasseWeb, '')  = '' THEN mas_TabClas.P_ClasseECWID ELSE mas_Articoli.p_ClasseWeb END AS ClasseWeb," & vbNewLine
                     sSql &= "CASE WHEN ISNULL(mas_Articoli.p_ClasseWeb, '')  = '' THEN mas_TabClas.P_LineaECWID ELSE mas_Articoli.p_LineaWeb END AS LineaWeb," & vbNewLine
                     sSql &= "CASE WHEN ISNULL(mas_Articoli.p_ClasseWeb, '')  = '' THEN mas_TabClas.P_GruppoECWID ELSE mas_Articoli.p_GruppoWeb END AS GruppoWeb," & vbNewLine
                     sSql &= "ISNULL(bru_TabBrand.Codice, '') AS Marca," & vbNewLine
@@ -540,13 +541,15 @@ Module MainModule
                                         sJSON &= "}],"
                                     End If
 
-                                    'Remmato 12/03/21 a seguito di mail di Jacopo Bruno
-                                    'addToJSON(sJSON, "price", row.Item("Prezzo_Dettaglio_Scontato").ToString, "I", True)
-                                    addToJSON(sJSON, "price", row.Item("Prezzo_Dettaglio").ToString, "I", True)
+                           'Remmato 12/03/21 a seguito di mail di Jacopo Bruno
+                           'addToJSON(sJSON, "price", row.Item("Prezzo_Dettaglio_Scontato").ToString, "I", True)
+                           addToJSON(sJSON, "price", row.Item("Prezzo_Dettaglio").ToString, "I", True)
+                           'richiesta di Jacopo del 10/02/2026
+                           addToJSON(sJSON, "finalCost", row.Item("Costo_ultimo").ToString, "I", True)
 
-                                    'addToJSON(sJSON, "compareToPrice", row.Item("Prezzo_Dettaglio").ToString, "I", True)
+                           'addToJSON(sJSON, "compareToPrice", row.Item("Prezzo_Dettaglio").ToString, "I", True)
 
-                                    addToJSON(sJSON, "discount", row.Item("PercSconto").ToString, "I", True)
+                           addToJSON(sJSON, "discount", row.Item("PercSconto").ToString, "I", True)
                                     addToJSON(sJSON, "discountStartDate", row.Item("DataInizioSconto").ToString, "D", True)
                                     addToJSON(sJSON, "discountEndDate", row.Item("DataFineSconto").ToString, "D", True)
 
