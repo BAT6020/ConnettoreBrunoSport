@@ -75,10 +75,15 @@ Module MainModule
 
             ElseIf par.StartsWith("/SendFiles") Then
                If CBool(GetValueFromConfig("SendFilesToWS")) Then
-                  Dim sUrl As String = GetValueFromConfig("urlBase") & GetValueFromConfig("urlPath")
-                  SendFiles(sUrl)
-                  Dim sUrl2 As String = GetValueFromConfig("urlBase2") & GetValueFromConfig("urlPath2")
-                  SendFiles(sUrl2)
+                  ''26/03/2026 DISMESSO
+                  ''Dim sUrl As String = GetValueFromConfig("urlBase") & GetValueFromConfig("urlPath")
+                  ''SendFiles(sUrl)
+
+                  ''26/03/2026 
+                  ''tolto l'invio in quanto dava errore, sostituito l'invio con uno script in winscp 
+                  ''nella cartella D:\Apps\Rob\ConnettoreOrangePix\SendFiles del server 
+                  'Dim sUrl2 As String = GetValueFromConfig("urlBase2") & GetValueFromConfig("urlPath2")
+                  'SendFiles(sUrl2)
                Else
                   Console.WriteLine("Invio files non abilitato!")
                End If
@@ -151,10 +156,15 @@ Module MainModule
       CallLogJSON(NamesJSON.UploadVariations, htUploadVariationJSON)
 
       If CBool(GetValueFromConfig("SendFilesToWS")) Then
-         Dim sUrl As String = GetValueFromConfig("urlBase") & GetValueFromConfig("urlPath")
-         SendFiles(sUrl)
-         Dim sUrl2 As String = GetValueFromConfig("urlBase2") & GetValueFromConfig("urlPath2")
-         SendFiles(sUrl2)
+         ''26/03/2026 DISMESSO
+         ''Dim sUrl As String = GetValueFromConfig("urlBase") & GetValueFromConfig("urlPath")
+         ''SendFiles(sUrl)
+
+         ''26/03/2026 
+         ''tolto l'invio in quanto dava errore, sostituito l'invio con uno script in winscp 
+         ''nella cartella D:\Apps\Rob\ConnettoreOrangePix\SendFiles del server 
+         ''Dim sUrl2 As String = GetValueFromConfig("urlBase2") & GetValueFromConfig("urlPath2")
+         ''SendFiles(sUrl2)
       Else
          SendFinalReport(dataInizio)
       End If
